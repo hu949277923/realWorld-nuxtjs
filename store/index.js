@@ -24,7 +24,6 @@ export const actions = {
     // console.log('---req--',process.server,  req.headers.cookie)
     if (req.headers.cookie) {
       const parsed = cookieParser.parse(req.headers.cookie)
-      console.log('str', parsed.user, typeof parsed.user)
       parsed.user && commit('setUser', JSON.parse(parsed.user))
     }
   }
