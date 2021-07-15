@@ -6,16 +6,17 @@ const service = axios.create({
 })
 export default ({ store }) => {
   service.interceptors.request.use(config => {
+    console.log('-------request-------', process.server, config)
     const { token } = store.getters
     config.headers.Authorization = `Token ${token}`
     return config
   })
   service.interceptors.response.use(response => {
-    // console.log('-------response-------', response)
+    console.log('-------response-------', process.server, response.data)
   
-    return Promise.resolve(response.data)
+    return Promise.resolve(response.data || response)
   },error => {
-    // console.log('---------error------', error.response)
+    console.log('---------error------',process.server,  error.response)
     return Promise.reject(error && error.response && error.response.data)
   })
 }

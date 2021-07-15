@@ -183,7 +183,7 @@ export default {
     const page = Number.parseInt(query.page|| 1)
     const limit = 20
     const tab = query.tab || 'global_feed'
-    const tag = query.tag
+    const tag = query.tag || ''
 
     const loadArticles = tab === 'global_feed'
       ? ApiGetArticles
@@ -197,7 +197,7 @@ export default {
       }),
       ApiGetTags()
     ])
-
+    console.log('---articleRes-----', articleRes)
     const { articles, articlesCount } = articleRes
     const { tags } = tagRes
 
